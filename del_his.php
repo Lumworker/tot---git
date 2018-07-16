@@ -44,6 +44,9 @@ $datas = $database->select("data_tot", [
     </div>
     
 <form id="myform" class="myform" method="post" name="myform">
+
+<!-- <button id="button" type="button">button</button> -->
+
 <p><input id="submit" type="submit" name="getback" value="Getback" class="btn btn-warning btn-lg" onclick="return submitForm()" /></p>
 <div  >
     <table id="employee_table" class="table table-hover">
@@ -62,7 +65,7 @@ $datas = $database->select("data_tot", [
             <td> <?php echo $data["name"]?></td>
             <td> <?php echo $data["location"]?></td>
             <td> <?php echo $data["promotion"]?></td>
-            <td><input type="checkbox" name="getback" value=<?php echo $data["number"]?>></td>
+            <td><input type="checkbox" name="value" value=<?php echo $data["number"]?>></td>
         </tr>
         <?php }
         ?>
@@ -71,17 +74,40 @@ $datas = $database->select("data_tot", [
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+
+var tmp = [];
+$("input").click(function() {
+  if ($(this).is(':checked')) {
+    var checked = ($(this).val());
+    tmp.push(checked);
+  } else {
+    tmp.splice($.inArray(checked, tmp),0);
+  }
+});
+
+$('#submit').on('click', function () {
+      alert(tmp);
+      
+      
+});
+
+});
+</script>
 <?php
-$getback = isset($_POST['getback']) ?$_POST['getback'] :"";
-if($getback!==""){
-    $datas = $database->update("data_tot", [
-    "deleated_at" =>NULL,
-        ], [
-        "number" => $getback
-        ]);
-        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.php\">"
-        ;}
-        ?>
+ 
+
+// $getback = isset($_POST['getback']) ?$_POST['getback'] :"";
+// if($getback!==""){
+//     $datas = $database->update("data_tot", [
+//     "deleated_at" =>NULL,
+//         ], [
+//         "number" => $getback
+//         ]);
+//         echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.php\">"
+//         ;}
+ ?>
 
 
  
