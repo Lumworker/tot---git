@@ -34,8 +34,8 @@ $datas = $database->select("data_tot", [
     ]);
 ?>
 
-<body>
-<div class="container" style="padding-bottom: 60px;">
+<body xmlns="http://www.w3.org/1999/html" id="show">
+<div class="container" style="padding-bottom: 60px;" id="container">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">ข้อมูลที่ถูกลบ <?php echo $q; ?></h1>
@@ -43,12 +43,11 @@ $datas = $database->select("data_tot", [
         </div>
     </div>
     
-<form id="myform" class="myform" method="post" name="myform">
 
 <!-- <button id="button" type="button">button</button> -->
 
-<p><input id="submit" type="submit" name="getback" value="Getback" class="btn btn-warning btn-lg" onclick="return submitForm()" /></p>
-<div  >
+    <input type="button" id="submit" class="btn btn-warning btn-lg"  value="GetBack"/>
+<div>
     <table id="employee_table" class="table table-hover">
         <tr>
             <th>number</th>
@@ -69,11 +68,11 @@ $datas = $database->select("data_tot", [
         </tr>
         <?php }
         ?>
-</form>
          </table>
         </div>
     </div>
 </div>
+
 <script>
 $(document).ready(function () {
 
@@ -87,16 +86,30 @@ $("input").click(function() {
   }
 });
 
-$('#submit').on('click', function () {
-      alert(tmp);
+    $("#submit").click(function(){
+
+    if(tmp !=""){
+        console.log(tmp);
+        $.post("del.php",{
+            "numberBack[]":tmp
+        },
+            function(data, status){
+                // alert("Data: " + data + "\nStatus: " + status);
+                alert('complete');
+                $("#show").load("del_his.php");
+            });
+        
+    }
+    else{
+        alert('กรุณาเลือกอย่างน้อย1รายการ');
+    }
       
-      
-});
+    });
 
 });
 </script>
 <?php
- 
+
 
 // $getback = isset($_POST['getback']) ?$_POST['getback'] :"";
 // if($getback!==""){
