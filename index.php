@@ -46,8 +46,12 @@ $datas = $database->select("data_tot", [
         <a class="btn btn-success btn-lg" href="create.php" role="button" data-lity>+ Create</a>
         |
         <a class="btn btn-danger btn-lg" href="del_his.php"role="button">Recycle Bin</a>
+
+            <a class="btn btn-warning btn-lg" href="register.php" role="button" data-lity>+ register</a>
+            <a class="btn btn-info btn-lg" href="login.php" role="button" data-lity>+ login</a>
     </div>
     <?php }else{ ?>
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">ผลการค้นหา <?php echo $q; ?></h1>
@@ -55,6 +59,8 @@ $datas = $database->select("data_tot", [
             <a class="btn btn-success btn-lg" href="create.php" role="button" data-lity>+ Create</a>
             |
             <a class="btn btn-danger btn-lg" href="del_his.php"role="button">Recycle Bin</a>
+            |
+
         </div>
     </div>
     <?php } ?>
@@ -78,6 +84,7 @@ $datas = $database->select("data_tot", [
             <td> <?php echo $data["promotion"]?></td>
             <td>  <a href="edit.php?number=<?php echo $data["number"]?>"data-lity>edit</a></td>
             <td>  <a href="del.php?number=<?php echo $data["number"]?>">delete</a></td>
+            <td><input type="checkbox" name="value" value=<?php echo $data["number"]?>></td>
         </tr>
         <?php }
         ?>
