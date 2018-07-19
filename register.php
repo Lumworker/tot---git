@@ -5,7 +5,7 @@ require_once("libs/Medoo.php");
 include_once("connect/configmedoo.php");
 $pageTitle = "Register";
 $show = 2;
-
+include_once "header.php";
 $con_password = isset($_POST['con_password']) ?$_POST['con_password'] :"";
 $Email = isset($_POST['Email']) ?$_POST['Email'] :"";
 $username = isset($_POST['username']) ?$_POST['username'] :"";

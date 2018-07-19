@@ -70,9 +70,9 @@ $password=$datas[0]['password'];
             <label for="name"> <h1>User Name : <?php echo $name ?>  </h1> </label> <br>
             <label for="Email"> <h3>  Email :  <?php echo $Email ?>  <h3> </label><Hr>
             <h3>  Change password  </h3>    
-            <label for="Password"> Password : <input type="password" name="OldPass" placeholder="Oldpasswotd" class="form-control"></label><br>
-            <label for="Password"> Newpassword : <input type="password" name="P1" placeholder="Oldpasswotd" class="form-control"></label>
-            <label for="Password"> Confirm-password : <input type="password" name="P2" placeholder="Oldpasswotd" class="form-control"></label> <br>
+            <label for="Password"> Password : <input type="password" name="OldPass" placeholder="password" class="form-control"></label><br>
+            <label for="Password"> Newpassword : <input type="password" name="P1" placeholder="New" class="form-control"></label>
+            <label for="Password"> Confirm-password : <input type="password" name="P2" placeholder="Confirm" class="form-control"></label> <br>
             <input class="btn btn-primary" type='submit' name='submit' value='Submit'  >
 </form>
 </div>

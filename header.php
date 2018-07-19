@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['uid']){
-    header("Location:_formlogin.php");
-}
+
 ?>
 <html>
 <head>
@@ -18,7 +16,10 @@ if(!$_SESSION['uid']){
 </head>
 <body>
 <?php
+        
     if($show==1) {
+        if(!$_SESSION['uid']){
+            header("Location:_formlogin.php");}
         ?>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.php">TOT</a>
