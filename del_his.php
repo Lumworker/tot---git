@@ -75,7 +75,7 @@ $datas = $database->select("data_tot", [
 
 <script>
 $(document).ready(function () {
-
+    // <input type="button" id="submit" class="btn btn-warning btn-lg"  value="GetBack"/>
 var tmp = [];
 $("input").click(function() {
   if ($(this).is(':checked')) {
@@ -97,6 +97,7 @@ $("input").click(function() {
                 // alert("Data: " + data + "\nStatus: " + status);
                 alert('complete');
                 $("#show").load("del_his.php");
+               
             });
         
     }

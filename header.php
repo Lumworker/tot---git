@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!$_SESSION['uid']){
+    header("Location:_formlogin.php");
+}
+?>
 <html>
 <head>
     <title><?php echo $pageTitle?> | TOT</title>
@@ -43,13 +49,32 @@
                         </div>
                     </li>
                 </ul>
-                <!-- <?php if($user!==""){ ?>
-                        <a class="nav-link" href="Login.php" data-lity>Login <span class="sr-only">(current)</span></a>
-                |
-                        <a class="nav-link" href="Register.php">register <span class="sr-only">(current)</span></a>
-                <?php    }else {?>
-                    <a class="nav-link" href="logout.php">logout <span class="sr-only">(current)</span></a>
-                <?php } ?> -->
+            <?php
+                $datas = $database->select("userdata",[
+                    "username",
+                    "img_path",
+                    "status"
+                ], [
+                    "user_id" => $_SESSION['uid']
+                ]);
+                $name=$datas[0]['username'];
+                $img_path=$datas[0]['img_path'];
+                $status=$datas[0]['status'];
+
+
+            ?>
+            
+            <span class="badge badge-pill badge-warning">welcome <?php echo $name; ?> </span>
+            <div class="dropdown">
+            
+            <img  src="<?php echo $img_path?>"  width="55px" height="auto" alt="Card image cap"   data-toggle="dropdown" ><br>
+                <span class="caret"></span></button>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="_formuseredit.php" data-lity>Profile (<?= $datas[0]['status'] ?>)</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout.php" style="color:red;">logout</a>
+            </div>
+            </div>
                 <form class="form-inline my-2 my-lg-0" action="index.php" METHOD="get">
                     <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

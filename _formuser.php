@@ -1,6 +1,6 @@
 
 <body>
-<div id="register" style="overflow:auto;background:#FDFDF6;padding:20px;width:1000px;max-width:100%;border-radius:6px"">
+<div id="register" style="overflow:auto;background:#FDFDF6;padding:20px;width:1000px;max-width:100%;border-radius:6px">
 <form method="post" target="_parent">
     <fieldset style="border:0;">
         <ul style="list-style:none">

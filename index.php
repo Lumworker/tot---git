@@ -8,7 +8,6 @@ $show = 1;
 
 include_once "header.php";
 $q = isset($_GET['q']) ?$_GET['q'] :"";
-//$sort = isset($_GET['']) ?$_GET['q'] :"";
 
 
 $datas = $database->select("data_tot", [
@@ -23,7 +22,6 @@ $datas = $database->select("data_tot", [
         "number[~]"  => $q,
         "promotion[~]"  => $q
     ]
-    
     ]);
     
     $count = $database->count("data_tot", [
@@ -35,20 +33,20 @@ $datas = $database->select("data_tot", [
 ?>
 
 <body>
+<div class="dataRender"></div>
+
 <div class="container" style="padding-bottom: 60px;">
     <?php if($q==""){ ?>
         <div class="jumbotron">
         <h1 class="display-4">ยินดีต้อนรับสู่ระบบค้นหาข้อมูล โปรโมชั่น</h1>
-        <!-- <p class="lead"></p> -->
         <hr class="my-4">
         <p>ข้อมูลลูกค้าปัจจุบันทั้งสิ้น <?php echo $count; ?> รายการ</p>
-        
+        <?php if($status=="admin") {?>
         <a class="btn btn-success btn-lg" href="create.php" role="button" data-lity>+ Create</a>
         |
         <a class="btn btn-danger btn-lg" href="del_his.php"role="button">Recycle Bin</a>
-
-            <a class="btn btn-warning btn-lg" href="register.php" role="button" data-lity>+ register</a>
-            <a class="btn btn-info btn-lg" href="login.php" role="button" data-lity>+ login</a>
+        <input type="button" id="Export" class="btn btn-warning btn-lg"  value="Export"/>
+        <?php }?>
     </div>
     <?php }else{ ?>
 
@@ -56,10 +54,14 @@ $datas = $database->select("data_tot", [
         <div class="container">
             <h1 class="display-4">ผลการค้นหา <?php echo $q; ?></h1>
             <p class="lead">จำนวนทั้งหมด  <?php echo $count; ?> รายการ</p>
+            <?php if($status=="admin") {?>
             <a class="btn btn-success btn-lg" href="create.php" role="button" data-lity>+ Create</a>
             |
             <a class="btn btn-danger btn-lg" href="del_his.php"role="button">Recycle Bin</a>
             |
+            <?php }?>
+            <input type="button" id="Export" class="btn btn-warning btn-lg"  value="Export"/>
+            
 
         </div>
     </div>
@@ -72,8 +74,11 @@ $datas = $database->select("data_tot", [
             <th>name</th>
             <th>location</th>
             <th>promotion</th>
+            <?php if($status=="admin") {?>
             <th>edit</th>
             <th>delete</th>
+            <?php }?>
+            <th>select</th>
         </tr>
     <?php foreach($datas as $data)
         {?>
@@ -82,9 +87,11 @@ $datas = $database->select("data_tot", [
             <td> <?php echo $data["name"]?></td>
             <td> <?php echo $data["location"]?></td>
             <td> <?php echo $data["promotion"]?></td>
+            <?php if($status=="admin") {?>
             <td>  <a href="edit.php?number=<?php echo $data["number"]?>"data-lity>edit</a></td>
             <td>  <a href="del.php?number=<?php echo $data["number"]?>">delete</a></td>
-            <td><input type="checkbox" name="value" value=<?php echo $data["number"]?>></td>
+           <?php }?>
+            <td> <input type="checkbox" name="value" value=<?php echo $data["number"]?>> </td>
         </tr>
         <?php }
         ?>
@@ -93,6 +100,44 @@ $datas = $database->select("data_tot", [
     </div>
 </div>
 
+
 <?php include_once "footer.php";
 ?>
 </body>
+<script>
+$(document).ready(function () {
+    // <input type="button" id="submit" class="btn btn-warning btn-lg"  value="GetBack"/>
+var tmp = [];
+$("input").click(function() {
+  if ($(this).is(':checked')) {
+    var checked = ($(this).val());
+    tmp.push(checked);
+  } else {
+    tmp.splice($.inArray(checked, tmp),0);
+  }
+});
+
+    $("#Export").click(function(){
+
+    if(tmp){
+        console.log(tmp);
+        $.post("export.php",{
+            "numberexport[]":tmp
+        },
+        function(data, status){
+                alert("Data: " + data + "\nStatus: " + status);
+                $('.dataRender').html(data);
+
+                
+                // alert('complete');
+                // $("#Export").load("export.php");
+                // window.location.href("export.php");
+            });
+        
+    }
+    
+      
+    });
+
+});
+</script>
