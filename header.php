@@ -16,7 +16,7 @@ session_start();
 </head>
 <body>
 <?php
-        
+
     if($show==1) {
         if(!$_SESSION['uid']){
             header("Location:_formlogin.php");}
@@ -33,7 +33,7 @@ session_start();
                     <li class="nav-item active">
                         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,6 +45,7 @@ session_start();
                             <a class="dropdown-item" href="index.php?q=3 บาท/นาที">3 บาท/นาที</a>
                             <a class="dropdown-item" href="index.php?q=6 บาท/นาที">6 บาท/นาที</a>
                             <a class="dropdown-item" href="index.php?q=คิดตาม promotion">คิดตาม promotion</a>
+                            <a class="dropdown-item" href="index.php?q=อื่นๆ">อื่นๆ</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="index.php">โปรโมชั่นทั้งหมด</a>
                         </div>
@@ -64,10 +65,10 @@ session_start();
 
 
             ?>
-            
+
             <span class="badge badge-pill badge-warning">welcome <?php echo $name; ?> </span>
             <div class="dropdown">
-            
+
             <img  src="<?php echo $img_path?>"  width="55px" height="auto" alt="Card image cap"   data-toggle="dropdown" ><br>
                 <span class="caret"></span></button>
                 <div class="dropdown-menu">
@@ -93,4 +94,3 @@ session_start();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.min.js"></script>
-

@@ -27,5 +27,3 @@ if($username!=""&&$password!=""&&$Email!=""&&$pic!=""){
 
 include_once("_formuser.php");
 ?>
-
-
